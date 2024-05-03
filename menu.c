@@ -55,7 +55,7 @@ void ShowButton(int buttonId)
     TBtn btn1=btn[buttonId];
     glVertexPointer(2,GL_FLOAT,0,btn1.vert);
     glEnableClientState(GL_VERTEX_ARRAY);
-        if(btn1.isDown) glColor3f(0.7,0.3,0.0);
+        if(btn1.isDown) glColor4f(0.7,0.3,0.0,1);
         else if(btn1.isHover)   glColor3f(0.8,0.8,1);
         else glColor3f(0.4,0.4,1.0);
         glDrawArrays(GL_TRIANGLE_FAN,0,4);
@@ -73,6 +73,7 @@ void ShowButton(int buttonId)
             glDrawArrays(GL_QUADS,0,btn1.num_quads*4);
         glDisableClientState(GL_VERTEX_ARRAY);
     glPopMatrix();
+glColor3f(1,1,1);
 }
 
 void Menu_ShowMenu()

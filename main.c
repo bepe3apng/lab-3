@@ -38,6 +38,7 @@ void InitMain()
 void InitTest()
 {
     ChooseBTN(3,7);
+
     tick=0;
     TypeOfAnim=0;
     anim=1;
@@ -79,20 +80,21 @@ void ShowTexture(float NumberOfSprite, float TypeOfAnim)
 {
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D,textureId);
-
+glEnable(GL_ALPHA_TEST); // РїСЂРѕРІРµСЂРєР° РЅР° СЌР»РµРјРµРЅС‚С‹ О±-РєР°РЅР°Р»Р°
+ //(РЅРµ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ)
+glAlphaFunc(GL_GREATER, 0.99);
     glColor3f(1,1,1);
     glPushMatrix();
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-        static float spriteXsize=240; //переменные с размерами текстуры и отдельного кадра
+        static float spriteXsize=240; //РїРµСЂРµРјРµРЅРЅС‹Рµ СЃ СЂР°Р·РјРµСЂР°РјРё С‚РµРєСЃС‚СѓСЂС‹ Рё РѕС‚РґРµР»СЊРЅРѕРіРѕ РєР°РґСЂР°
         static float spriteYsize=180;
         static float charsizey=60;
         static float charsizex=40;
-        float left=(charsizex*NumberOfSprite)/spriteXsize; //вычисление координат кадра на изображении от
-        float right=left+(charsizex/spriteXsize); //номера кадра
+   float left=(charsizex*NumberOfSprite)/spriteXsize+50; //РІС‹С‡РёСЃР»РµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚ РєР°РґСЂР° РЅР° РёР·РѕР±СЂР°Р¶РµРЅРёРё РѕС‚
+        float right=left+(charsizex/spriteXsize); //РЅРѕРјРµСЂР° РєР°РґСЂР°
         float top=(charsizey*TypeOfAnim)/spriteYsize;
         float bottom=top+(charsizey/spriteYsize);
-
         TextureCord[5]=TextureCord[7]=bottom;
         TextureCord[1]=TextureCord[3]=top;
         TextureCord[0]=TextureCord[6]=left;
@@ -103,6 +105,7 @@ void ShowTexture(float NumberOfSprite, float TypeOfAnim)
         glDisableClientState(GL_VERTEX_ARRAY);
         glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     glPopMatrix();
+glDisable(GL_ALPHA_TEST);
 }
 
 
